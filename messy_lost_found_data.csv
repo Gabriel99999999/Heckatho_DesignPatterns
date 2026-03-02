@@ -1,0 +1,501 @@
+id,name,email,phone,city,status,description,date_reported,value_estimate,duplicate_field
+0,,user0@example.com,+49 170 1234567,Munich,FOUND,Lost black wallet near library,,,
+1,,invalid-email,+49 170 1234567,berlin ,Lost,,,192.08,
+2,Charlie,user2@example.com,123456789,berlin ,,Blue backpack missing,1723662714.826861,447.75,
+3,Peggy,user3@example.com,123456789,Hamburg,lost,Lost black wallet near library,2024-01-16,unknown,duplicate
+4,Mallory,invalid-email,,Berlin,,,09-29-2025,,
+5,,user5@example.com,123456789,Munich,FOUND,Blue backpack missing,04-28-2024,,
+6,Oscar,user6@example.com,,Frankfurt,lost,Blue backpack missing,1712776314.826902,138.66,
+7,Peggy,user7@example.com,abc123,Berlin,Lost,Lost black wallet near library,28/03/2024,94.69,duplicate
+8,Eve,user8@example.com,+49 170 1234567,berlin ,FOUND,,14/11/2023,unknown,
+9,Mallory,user9@example.com,,berlin ,Found,,2025-01-21,284.08,duplicate
+,Bob,invalid-email,,,lost,,2024-07-04,unknown,duplicate
+11,Mallory,user11@example.com,+49 170 1234567,Hamburg,lost,,07-03-2025,unknown,
+12,Alice,user12@example.com,123456789,berlin ,Found,Blue backpack missing,,441.81,duplicate
+13,Charlie,user13@example.com,abc123,Hamburg,FOUND,Blue backpack missing,1740683514.826986,unknown,duplicate
+14,David,user14@example.com,,berlin ,FOUND,Lost black wallet near library,10-26-2024,15.71,
+15,Charlie,invalid-email,00491701234567,Cologne,,,,,
+16,Eve,user16@example.com,,Frankfurt,FOUND,Lost black wallet near library,23/06/2024,,
+17,Mallory,user17@example.com,123456789,,,,11-11-2023,439.22,
+18,Alice,user18@example.com,123456789,berlin ,,,08-26-2024,unknown,duplicate
+19,Oscar,user19@example.com,123456789,Frankfurt,,Blue backpack missing,2024-07-19,198.8,
+20,Oscar,invalid-email,,,lost,,2025-08-28,93.56,
+21,Oscar,invalid-email,,Berlin,,Lost black wallet near library,2025-08-11,457.69,duplicate
+22,,user22@example.com,+49 170 1234567,Berlin,Found,Found keys at cafeteria,,unknown,
+23,Peggy,user23@example.com,123456789,Frankfurt,,Lost black wallet near library,,unknown,
+24,Peggy,user24@example.com,+49 170 1234567,Cologne,Lost,Found keys at cafeteria,23/11/2023,,
+25,,user25@example.com,abc123,MUNICH,,,09/06/2024,unknown,
+26,David,user26@example.com,+49 170 1234567,MUNICH,,Blue backpack missing,2025-12-04,unknown,
+27,Mallory,user27@example.com,123456789,berlin ,,Found keys at cafeteria,03/03/2025,unknown,duplicate
+28,Charlie,user28@example.com,+49 170 1234567,berlin ,,Found keys at cafeteria,2024-07-16,unknown,
+29,Peggy,user29@example.com,,berlin ,lost,Blue backpack missing,1739214714.827161,unknown,
+30,Oscar,user30@example.com,123456789,,Found,Found keys at cafeteria,17/09/2023,29.42,
+31,,user31@example.com,+49 170 1234567,Berlin,Found,,,unknown,
+32,Eve,user32@example.com,00491701234567,MUNICH,,,20/12/2025,432.45,
+33,,user33@example.com,00491701234567,Hamburg,,,,,
+34,Mallory,user34@example.com,,Munich,,Lost black wallet near library,08-24-2023,165.49,
+35,Charlie,user35@example.com,00491701234567,Frankfurt,lost,Lost black wallet near library,2024-09-07,398.45,duplicate
+36,,user36@example.com,00491701234567,Berlin,Found,,2024-11-30,489.29,duplicate
+37,,user37@example.com,00491701234567,Munich,Found,Found keys at cafeteria,1690830714.827267,unknown,
+38,David,user38@example.com,123456789,MUNICH,FOUND,Found keys at cafeteria,,,
+39,,user39@example.com,+49 170 1234567,Frankfurt,FOUND,,09-06-2025,,
+40,Oscar,user40@example.com,abc123,Cologne,lost,,13/06/2024,8.07,
+41,Alice,invalid-email,+49 170 1234567,Berlin,,,04/11/2024,unknown,duplicate
+42,Mallory,user42@example.com,+49 170 1234567,Frankfurt,,,1751829114.827333,,
+43,Mallory,invalid-email,,Frankfurt,lost,Blue backpack missing,13/05/2024,unknown,duplicate
+44,,user44@example.com,+49 170 1234567,Frankfurt,lost,Found keys at cafeteria,06/03/2024,,
+45,Eve,invalid-email,123456789,Frankfurt,FOUND,Blue backpack missing,15/10/2024,unknown,
+46,Bob,invalid-email,00491701234567,MUNICH,,Lost black wallet near library,,88.04,
+47,Alice,user47@example.com,+49 170 1234567,MUNICH,FOUND,Found keys at cafeteria,2025-11-26,,
+48,Bob,invalid-email,00491701234567,MUNICH,Found,,1729710714.82741,,
+49,Bob,user49@example.com,00491701234567,Berlin,,,1772392314.827419,162.48,duplicate
+50,,user50@example.com,abc123,Frankfurt,FOUND,,11/07/2024,24.39,
+51,,invalid-email,abc123,berlin ,,Lost black wallet near library,07-29-2025,,
+52,,user52@example.com,123456789,Hamburg,,,,,
+53,Eve,user53@example.com,,,,,11-28-2025,48.79,
+54,,user54@example.com,abc123,MUNICH,,,10-24-2024,,
+55,Peggy,invalid-email,123456789,berlin ,FOUND,Lost black wallet near library,2026-02-11,unknown,
+56,Peggy,user56@example.com,abc123,Frankfurt,lost,,2024-11-11,71.29,
+57,Charlie,user57@example.com,123456789,Munich,FOUND,Lost black wallet near library,01/06/2024,unknown,duplicate
+58,Bob,user58@example.com,,,lost,,11-12-2024,258.34,
+,Alice,user59@example.com,00491701234567,Munich,FOUND,,1707937914.827519,,
+60,Alice,user60@example.com,+49 170 1234567,Berlin,lost,,1740510714.827535,,
+61,Peggy,user61@example.com,,Munich,lost,,21/11/2024,265.7,
+62,,user62@example.com,+49 170 1234567,Berlin,Lost,Found keys at cafeteria,15/08/2025,unknown,
+63,,user63@example.com,+49 170 1234567,Frankfurt,lost,,08/12/2025,464.58,
+64,,invalid-email,123456789,MUNICH,Found,Found keys at cafeteria,2024-07-09,130.55,
+65,Charlie,user65@example.com,123456789,Berlin,,,1762974714.827583,,
+66,David,invalid-email,abc123,,lost,,07-04-2023,83.9,
+67,Alice,invalid-email,00491701234567,MUNICH,Found,Blue backpack missing,06-11-2024,303.52,
+68,Bob,user68@example.com,abc123,Frankfurt,Lost,Blue backpack missing,2024-09-13,unknown,duplicate
+69,David,user69@example.com,00491701234567,berlin ,,,2026-01-15,,
+70,Mallory,invalid-email,,berlin ,Lost,Blue backpack missing,2025-09-09,,
+71,David,user71@example.com,00491701234567,,FOUND,,,,duplicate
+72,,user72@example.com,abc123,Hamburg,lost,,28/12/2024,121.21,
+73,Charlie,user73@example.com,00491701234567,Frankfurt,lost,Found keys at cafeteria,1753211514.827676,,duplicate
+74,Mallory,user74@example.com,abc123,Hamburg,FOUND,Lost black wallet near library,1727464314.8277,320.22,
+75,Eve,user75@example.com,00491701234567,,Found,Blue backpack missing,2025-11-20,58.89,
+,Peggy,user76@example.com,abc123,MUNICH,FOUND,,07-01-2025,254.75,
+77,Charlie,user77@example.com,+49 170 1234567,Cologne,FOUND,Lost black wallet near library,2023-12-25,,
+78,Eve,user78@example.com,00491701234567,berlin ,,,1747249914.827736,unknown,duplicate
+79,Bob,user79@example.com,+49 170 1234567,Hamburg,lost,Blue backpack missing,2023-11-18,unknown,
+,Mallory,user80@example.com,123456789,Hamburg,Found,Lost black wallet near library,04/12/2023,unknown,duplicate
+81,Mallory,user81@example.com,+49 170 1234567,Munich,FOUND,Blue backpack missing,18/09/2025,,
+82,Mallory,user82@example.com,123456789,,Found,Blue backpack missing,,375.17,duplicate
+83,Eve,user83@example.com,+49 170 1234567,Hamburg,lost,,,10.67,
+84,Oscar,user84@example.com,00491701234567,berlin ,,Lost black wallet near library,12-11-2023,,
+85,Peggy,invalid-email,00491701234567,berlin ,,Lost black wallet near library,03/07/2024,364.75,
+86,Charlie,user86@example.com,abc123,berlin ,,Lost black wallet near library,,unknown,
+87,Oscar,user87@example.com,+49 170 1234567,MUNICH,Found,,1727377914.827836,unknown,
+88,Oscar,user88@example.com,00491701234567,Berlin,Found,Blue backpack missing,,493.49,
+89,Oscar,user89@example.com,00491701234567,MUNICH,FOUND,Found keys at cafeteria,05-26-2024,222.14,
+90,Oscar,user90@example.com,abc123,berlin ,Found,,,,
+91,,user91@example.com,123456789,Hamburg,Lost,,01-17-2024,153.22,duplicate
+92,Alice,user92@example.com,00491701234567,MUNICH,,Found keys at cafeteria,,391.26,
+93,Mallory,user93@example.com,abc123,Munich,lost,Found keys at cafeteria,1694977914.8279,,
+94,Oscar,invalid-email,abc123,berlin ,,Found keys at cafeteria,,,
+95,Charlie,user95@example.com,00491701234567,Berlin,,Blue backpack missing,09-18-2023,unknown,
+96,Eve,user96@example.com,+49 170 1234567,Munich,,Lost black wallet near library,,,duplicate
+97,Bob,invalid-email,+49 170 1234567,berlin ,Lost,,1771528314.827936,254.81,
+98,Charlie,user98@example.com,abc123,Cologne,Found,,08-23-2023,unknown,
+99,,user99@example.com,+49 170 1234567,Cologne,FOUND,Found keys at cafeteria,02-01-2026,,
+100,Mallory,user100@example.com,+49 170 1234567,,Lost,Blue backpack missing,1694373114.827961,unknown,
+101,Peggy,invalid-email,00491701234567,Berlin,Lost,Lost black wallet near library,1712085114.82797,,duplicate
+102,Bob,user102@example.com,abc123,berlin ,,,2023-06-13,340.85,
+103,David,user103@example.com,123456789,Munich,,Found keys at cafeteria,05/01/2025,unknown,
+104,Bob,user104@example.com,abc123,MUNICH,Found,Found keys at cafeteria,1770232314.827995,,duplicate
+105,Alice,user105@example.com,abc123,,,,1735326714.828003,unknown,
+106,,user106@example.com,00491701234567,MUNICH,lost,Found keys at cafeteria,09-24-2025,unknown,duplicate
+107,Charlie,user107@example.com,00491701234567,MUNICH,FOUND,,2025-08-29,,
+108,,user108@example.com,,Cologne,Lost,,1706555514.828029,unknown,duplicate
+109,Bob,user109@example.com,00491701234567,Frankfurt,FOUND,Blue backpack missing,04-15-2025,,
+110,David,user110@example.com,abc123,Cologne,Found,Found keys at cafeteria,1705000314.828046,unknown,
+111,Mallory,user111@example.com,+49 170 1234567,Munich,lost,,2023-10-02,unknown,
+112,David,user112@example.com,00491701234567,Munich,,,,292.35,
+113,Mallory,user113@example.com,+49 170 1234567,,lost,Lost black wallet near library,19/06/2023,unknown,
+114,,invalid-email,abc123,Berlin,,Found keys at cafeteria,2026-01-03,455.34,duplicate
+115,Oscar,user115@example.com,+49 170 1234567,MUNICH,FOUND,Lost black wallet near library,,unknown,
+116,Mallory,user116@example.com,+49 170 1234567,Hamburg,,Blue backpack missing,2025-03-28,unknown,duplicate
+117,Peggy,user117@example.com,abc123,,,Lost black wallet near library,08/04/2024,unknown,
+118,,user118@example.com,+49 170 1234567,Hamburg,Found,Lost black wallet near library,1763147514.82812,unknown,
+119,,user119@example.com,+49 170 1234567,Berlin,Lost,,08-06-2025,unknown,
+120,,user120@example.com,abc123,Munich,Found,Lost black wallet near library,30/03/2025,24.72,
+121,Alice,user121@example.com,123456789,Munich,,,07-11-2023,8.19,
+122,David,invalid-email,00491701234567,MUNICH,Lost,Blue backpack missing,12-03-2023,346.75,duplicate
+123,Eve,user123@example.com,,,Lost,Blue backpack missing,1769368314.828183,,
+124,David,user124@example.com,123456789,berlin ,,,,285.62,
+125,Peggy,user125@example.com,00491701234567,,lost,,09-19-2024,unknown,
+126,Mallory,user126@example.com,,berlin ,,,10-15-2025,4.65,
+127,Oscar,user127@example.com,,Berlin,lost,Lost black wallet near library,2025-02-04,unknown,duplicate
+,Oscar,user128@example.com,+49 170 1234567,,Lost,Lost black wallet near library,2024-11-11,478.74,
+129,,user129@example.com,+49 170 1234567,Cologne,lost,,19/03/2025,195.0,
+,,user130@example.com,123456789,Frankfurt,lost,Lost black wallet near library,1737141114.828268,,
+131,,invalid-email,00491701234567,Munich,lost,Blue backpack missing,1698606714.828285,253.95,
+132,,invalid-email,123456789,,FOUND,Blue backpack missing,1687893114.828305,,
+133,,user133@example.com,123456789,MUNICH,Found,Blue backpack missing,1729710714.828313,,duplicate
+134,Peggy,user134@example.com,00491701234567,,,,03-31-2025,,
+,Mallory,invalid-email,abc123,berlin ,Found,Blue backpack missing,1705864314.82833,115.79,
+136,,user136@example.com,00491701234567,Munich,FOUND,,2025-12-09,143.43,duplicate
+137,Charlie,user137@example.com,+49 170 1234567,,Found,Lost black wallet near library,20/09/2025,,
+138,,invalid-email,123456789,Hamburg,Lost,Lost black wallet near library,12-18-2024,unknown,
+139,Eve,user139@example.com,00491701234567,Hamburg,Found,,12-19-2024,unknown,
+140,David,user140@example.com,,berlin ,,Found keys at cafeteria,03-12-2025,unknown,
+141,Peggy,user141@example.com,abc123,Frankfurt,,Found keys at cafeteria,08-31-2023,460.66,
+142,David,user142@example.com,+49 170 1234567,berlin ,FOUND,Found keys at cafeteria,,412.01,duplicate
+143,,user143@example.com,,Berlin,Found,Blue backpack missing,01-10-2025,276.48,duplicate
+,Charlie,user144@example.com,abc123,Cologne,Lost,Blue backpack missing,2025-04-05,,
+145,Eve,user145@example.com,,Berlin,Lost,,09-28-2023,179.87,
+146,David,user146@example.com,00491701234567,MUNICH,Lost,Blue backpack missing,11-22-2024,,duplicate
+,Oscar,user147@example.com,00491701234567,,lost,Blue backpack missing,11-29-2024,74.01,
+148,,invalid-email,abc123,MUNICH,,,2023-11-26,unknown,
+149,Charlie,user149@example.com,123456789,Berlin,FOUND,,1701112314.828477,97.83,duplicate
+150,Alice,user150@example.com,+49 170 1234567,berlin ,Lost,,10-06-2023,unknown,duplicate
+151,Alice,user151@example.com,+49 170 1234567,Berlin,Lost,Lost black wallet near library,,131.34,duplicate
+152,David,user152@example.com,,Munich,Lost,Blue backpack missing,1705173114.828502,,duplicate
+153,David,user153@example.com,+49 170 1234567,Hamburg,lost,Found keys at cafeteria,,,duplicate
+154,Oscar,user154@example.com,123456789,,Found,Blue backpack missing,11-17-2024,unknown,
+155,Eve,invalid-email,+49 170 1234567,Munich,Found,,2025-04-20,271.51,duplicate
+156,Oscar,invalid-email,+49 170 1234567,MUNICH,FOUND,Lost black wallet near library,1766689914.828547,unknown,
+157,Bob,user157@example.com,123456789,Cologne,,Blue backpack missing,03/07/2025,,duplicate
+158,David,user158@example.com,123456789,Frankfurt,FOUND,,19/10/2025,,
+159,Bob,invalid-email,+49 170 1234567,,,Blue backpack missing,12/06/2024,407.77,duplicate
+160,Alice,user160@example.com,+49 170 1234567,Cologne,,,24/11/2024,,
+161,Alice,user161@example.com,123456789,Cologne,,,1702926714.8286,unknown,duplicate
+162,David,invalid-email,123456789,MUNICH,Lost,,1745608314.82861,unknown,
+163,,user163@example.com,abc123,Hamburg,Lost,Blue backpack missing,,,duplicate
+164,,user164@example.com,00491701234567,Berlin,,Blue backpack missing,12/08/2023,,
+,Oscar,user165@example.com,abc123,Berlin,,Found keys at cafeteria,,unknown,
+166,Peggy,invalid-email,123456789,Munich,lost,,12/05/2025,unknown,
+167,David,user167@example.com,+49 170 1234567,berlin ,FOUND,Lost black wallet near library,2023-09-27,41.97,
+168,Mallory,user168@example.com,,berlin ,lost,,2023-10-22,,duplicate
+169,Charlie,user169@example.com,123456789,MUNICH,,Blue backpack missing,2024-08-27,68.57,
+170,Peggy,user170@example.com,abc123,Frankfurt,,Lost black wallet near library,09-16-2025,,
+,Alice,user171@example.com,abc123,Munich,,Blue backpack missing,,418.52,
+172,Alice,user172@example.com,00491701234567,Frankfurt,,Found keys at cafeteria,19/04/2024,,
+173,Mallory,invalid-email,00491701234567,Cologne,FOUND,Blue backpack missing,25/05/2025,4.42,duplicate
+174,,invalid-email,abc123,Berlin,,,2024-10-30,51.39,
+175,Mallory,user175@example.com,abc123,,,Found keys at cafeteria,02/10/2024,unknown,duplicate
+176,Charlie,user176@example.com,+49 170 1234567,Frankfurt,,,24/05/2025,,
+177,Alice,user177@example.com,abc123,Cologne,lost,Lost black wallet near library,07-31-2023,413.8,
+178,Peggy,user178@example.com,+49 170 1234567,Frankfurt,Lost,,,unknown,
+179,David,invalid-email,123456789,Berlin,,,30/04/2024,,
+180,Oscar,user180@example.com,123456789,Frankfurt,FOUND,Found keys at cafeteria,03-11-2024,,
+181,Charlie,user181@example.com,abc123,Berlin,,,2026-01-10,135.16,
+182,Peggy,user182@example.com,00491701234567,Berlin,lost,Blue backpack missing,04/11/2025,unknown,
+183,Eve,user183@example.com,00491701234567,Cologne,FOUND,Blue backpack missing,2023-09-25,12.48,
+184,Oscar,user184@example.com,+49 170 1234567,Munich,FOUND,Found keys at cafeteria,09-10-2024,,
+185,Oscar,user185@example.com,,Frankfurt,lost,,2025-11-14,,
+186,,invalid-email,+49 170 1234567,Munich,Found,,11/03/2025,347.15,
+187,Alice,user187@example.com,00491701234567,Berlin,,,09-10-2024,49.33,duplicate
+188,Eve,user188@example.com,00491701234567,MUNICH,FOUND,,11/10/2025,120.49,
+189,Oscar,user189@example.com,00491701234567,,lost,,07/04/2025,unknown,
+190,David,invalid-email,abc123,Frankfurt,,Blue backpack missing,12-04-2025,412.36,
+191,Peggy,user191@example.com,abc123,Frankfurt,FOUND,,2024-07-26,unknown,duplicate
+192,Bob,invalid-email,00491701234567,Munich,,,18/12/2025,79.14,duplicate
+193,Oscar,invalid-email,+49 170 1234567,MUNICH,,,14/11/2023,,
+194,,user194@example.com,,berlin ,Lost,,2024-04-04,,duplicate
+195,Alice,user195@example.com,+49 170 1234567,Berlin,,Found keys at cafeteria,1759691514.82895,unknown,duplicate
+196,Peggy,invalid-email,+49 170 1234567,Munich,lost,,2024-02-02,,
+197,Eve,user197@example.com,123456789,berlin ,Lost,Lost black wallet near library,08-23-2025,unknown,duplicate
+198,Peggy,user198@example.com,,Munich,lost,Lost black wallet near library,,unknown,
+199,Eve,user199@example.com,+49 170 1234567,Munich,lost,Found keys at cafeteria,1722539514.828984,unknown,
+200,,user200@example.com,,Cologne,Lost,Blue backpack missing,2026-01-07,327.5,
+201,,user201@example.com,+49 170 1234567,Cologne,,Lost black wallet near library,1741979514.829002,,
+202,David,user202@example.com,123456789,Cologne,,Blue backpack missing,,unknown,
+203,Bob,user203@example.com,,,FOUND,,27/03/2025,,
+204,,user204@example.com,123456789,,Found,,14/11/2025,unknown,
+205,Bob,invalid-email,00491701234567,Hamburg,lost,,,,
+206,David,user206@example.com,+49 170 1234567,berlin ,lost,Lost black wallet near library,1722971514.829044,396.48,
+207,Alice,invalid-email,,berlin ,lost,Found keys at cafeteria,10/09/2024,unknown,
+208,Eve,invalid-email,123456789,Berlin,,,2025-05-03,250.02,duplicate
+209,Oscar,user209@example.com,00491701234567,Munich,Lost,Found keys at cafeteria,07-09-2023,293.12,
+210,,user210@example.com,abc123,Berlin,,Blue backpack missing,,unknown,
+211,Oscar,user211@example.com,+49 170 1234567,Cologne,Lost,,11-15-2023,unknown,duplicate
+212,Oscar,user212@example.com,00491701234567,Cologne,Lost,,08/05/2025,,
+213,Mallory,user213@example.com,abc123,Munich,,Found keys at cafeteria,08-20-2025,unknown,
+214,Peggy,user214@example.com,abc123,,Lost,,02/04/2024,496.19,
+215,Charlie,user215@example.com,abc123,Cologne,,,10-01-2023,57.43,
+216,Oscar,user216@example.com,123456789,Munich,lost,Lost black wallet near library,29/10/2025,unknown,duplicate
+217,Oscar,invalid-email,00491701234567,berlin ,,Found keys at cafeteria,2023-10-06,199.29,
+218,Peggy,invalid-email,,,Lost,,,unknown,
+219,Peggy,user219@example.com,123456789,Frankfurt,Lost,Found keys at cafeteria,17/08/2024,unknown,
+220,,invalid-email,123456789,Hamburg,,Lost black wallet near library,10-09-2025,unknown,
+221,Charlie,invalid-email,00491701234567,MUNICH,Found,Blue backpack missing,12-18-2024,310.65,
+222,Charlie,user222@example.com,abc123,MUNICH,,,,161.58,duplicate
+223,David,user223@example.com,+49 170 1234567,Hamburg,,Lost black wallet near library,04-27-2024,,duplicate
+224,David,invalid-email,00491701234567,Berlin,,Lost black wallet near library,1732821114.829216,unknown,
+225,David,user225@example.com,,Cologne,Lost,,,,duplicate
+226,Mallory,invalid-email,+49 170 1234567,Frankfurt,Found,Found keys at cafeteria,2026-02-01,unknown,
+227,David,user227@example.com,00491701234567,Munich,FOUND,Found keys at cafeteria,21/12/2024,,duplicate
+228,,user228@example.com,+49 170 1234567,MUNICH,,Blue backpack missing,1693422714.82925,unknown,
+229,Bob,user229@example.com,abc123,Hamburg,Found,,2023-08-22,unknown,duplicate
+230,Alice,user230@example.com,abc123,Munich,lost,Lost black wallet near library,,76.05,duplicate
+231,,user231@example.com,abc123,berlin ,,,2024-03-26,unknown,duplicate
+232,David,user232@example.com,abc123,,,Lost black wallet near library,1754593914.829295,,
+233,Peggy,invalid-email,123456789,,lost,Found keys at cafeteria,22/02/2024,unknown,
+234,Bob,user234@example.com,00491701234567,berlin ,Found,,08-04-2023,unknown,duplicate
+235,Bob,invalid-email,abc123,Munich,,,2023-07-06,,
+236,,user236@example.com,123456789,Frankfurt,FOUND,Blue backpack missing,,114.44,
+237,Oscar,user237@example.com,+49 170 1234567,,lost,Lost black wallet near library,,74.44,
+238,Eve,user238@example.com,+49 170 1234567,,lost,Lost black wallet near library,2024-06-29,,duplicate
+239,Eve,user239@example.com,00491701234567,Frankfurt,,Lost black wallet near library,10-19-2023,,
+240,,user240@example.com,123456789,Munich,,Lost black wallet near library,1707419514.829385,25.05,duplicate
+241,Bob,user241@example.com,+49 170 1234567,Hamburg,,Found keys at cafeteria,1736277114.829395,225.18,
+242,,user242@example.com,00491701234567,berlin ,,,01-29-2025,57.26,
+243,Alice,user243@example.com,00491701234567,Frankfurt,Found,,2024-11-12,unknown,duplicate
+244,Alice,user244@example.com,,Hamburg,FOUND,Blue backpack missing,2024-10-28,57.95,duplicate
+245,Oscar,user245@example.com,+49 170 1234567,Berlin,,,1693595514.829453,unknown,
+246,David,user246@example.com,+49 170 1234567,berlin ,Found,,12/03/2024,155.08,
+247,Bob,user247@example.com,00491701234567,Berlin,,,17/11/2025,,
+248,Bob,user248@example.com,123456789,Munich,lost,,1736104314.829478,14.95,
+249,,user249@example.com,,Cologne,lost,,2025-04-29,unknown,
+250,Peggy,user250@example.com,,Munich,,,,,duplicate
+251,Eve,user251@example.com,+49 170 1234567,Berlin,Lost,Blue backpack missing,2025-06-07,,
+,,invalid-email,00491701234567,Frankfurt,Found,Lost black wallet near library,2025-02-16,unknown,
+253,Peggy,user253@example.com,123456789,Berlin,lost,Blue backpack missing,1690744314.829543,,
+254,Mallory,user254@example.com,+49 170 1234567,berlin ,FOUND,,2024-08-18,,
+255,Eve,user255@example.com,+49 170 1234567,Cologne,,Found keys at cafeteria,2023-11-23,39.93,
+256,Bob,user256@example.com,123456789,berlin ,,,11/08/2024,,
+257,Charlie,user257@example.com,+49 170 1234567,Cologne,FOUND,Lost black wallet near library,12-07-2024,477.48,duplicate
+258,,user258@example.com,123456789,berlin ,Found,,24/09/2023,unknown,duplicate
+259,Bob,user259@example.com,,berlin ,lost,Found keys at cafeteria,17/07/2025,,duplicate
+260,Mallory,user260@example.com,123456789,,Lost,,,44.85,
+261,Mallory,invalid-email,00491701234567,Munich,,,,187.35,duplicate
+262,,user262@example.com,,Munich,,Blue backpack missing,,unknown,duplicate
+263,David,user263@example.com,,,,Found keys at cafeteria,1700248314.829649,,
+264,David,user264@example.com,123456789,Munich,FOUND,Lost black wallet near library,1740597114.829664,213.29,duplicate
+265,Alice,invalid-email,,MUNICH,FOUND,,09-10-2025,unknown,
+266,Charlie,invalid-email,+49 170 1234567,MUNICH,lost,,,,
+267,Eve,user267@example.com,+49 170 1234567,berlin ,Found,Blue backpack missing,2024-01-02,unknown,
+268,Oscar,user268@example.com,+49 170 1234567,Munich,lost,Found keys at cafeteria,,62.21,
+269,Alice,user269@example.com,,Berlin,,,09-29-2025,184.69,duplicate
+270,Alice,user270@example.com,,Munich,Found,,2023-09-30,473.49,duplicate
+271,Eve,user271@example.com,00491701234567,Frankfurt,,Lost black wallet near library,2025-09-03,,duplicate
+272,David,user272@example.com,+49 170 1234567,Cologne,FOUND,,2025-11-09,67.75,
+273,Peggy,user273@example.com,,Berlin,lost,Lost black wallet near library,02-08-2026,,
+274,Oscar,user274@example.com,,Munich,FOUND,,08-26-2024,,duplicate
+275,Peggy,user275@example.com,00491701234567,MUNICH,,Found keys at cafeteria,09/02/2024,unknown,
+276,Charlie,user276@example.com,+49 170 1234567,Hamburg,,,,103.9,
+277,Alice,user277@example.com,,Berlin,FOUND,,10-28-2025,,
+278,,user278@example.com,abc123,Berlin,Found,Lost black wallet near library,,481.64,
+279,Mallory,user279@example.com,+49 170 1234567,Munich,FOUND,Found keys at cafeteria,2024-09-09,331.23,
+280,,user280@example.com,+49 170 1234567,Hamburg,Lost,Found keys at cafeteria,1745953914.829854,unknown,
+281,,user281@example.com,123456789,berlin ,,,2023-08-12,295.32,
+282,,user282@example.com,abc123,Frankfurt,FOUND,Lost black wallet near library,1717614714.829871,unknown,
+283,Mallory,invalid-email,+49 170 1234567,MUNICH,,Found keys at cafeteria,,,
+284,Mallory,invalid-email,abc123,berlin ,,Found keys at cafeteria,,,duplicate
+285,Bob,user285@example.com,abc123,Munich,Lost,,,,
+286,Oscar,user286@example.com,abc123,Munich,FOUND,Found keys at cafeteria,1767899514.829908,198.76,duplicate
+287,David,user287@example.com,+49 170 1234567,Cologne,lost,Found keys at cafeteria,2025-07-29,unknown,
+288,Bob,user288@example.com,123456789,Cologne,,Lost black wallet near library,08-31-2024,unknown,
+,Peggy,user289@example.com,123456789,Cologne,FOUND,,2024-04-03,unknown,
+290,Mallory,user290@example.com,123456789,Frankfurt,Found,,05-19-2024,119.63,
+291,Charlie,user291@example.com,123456789,Munich,lost,,03-02-2025,unknown,
+292,David,user292@example.com,00491701234567,,,Blue backpack missing,2026-01-10,,
+293,Charlie,user293@example.com,,Munich,FOUND,Blue backpack missing,2024-01-30,unknown,
+294,Mallory,user294@example.com,+49 170 1234567,Berlin,,,2025-02-19,,
+295,Eve,user295@example.com,,Munich,Lost,Found keys at cafeteria,2025-03-11,440.54,
+296,Bob,user296@example.com,,Munich,,,1715368314.830014,unknown,
+297,Peggy,user297@example.com,,Berlin,Found,,,109.13,
+298,Charlie,user298@example.com,+49 170 1234567,Munich,FOUND,Lost black wallet near library,,,duplicate
+299,Bob,invalid-email,00491701234567,Berlin,FOUND,,04-20-2024,446.39,
+300,Oscar,user300@example.com,00491701234567,Cologne,Found,,2025-06-25,122.64,duplicate
+301,Charlie,user301@example.com,123456789,MUNICH,,,2023-12-19,unknown,
+302,Alice,user302@example.com,00491701234567,Cologne,Found,Blue backpack missing,2023-11-17,unknown,
+303,,user303@example.com,123456789,Frankfurt,lost,,1768763514.830076,228.04,duplicate
+304,,invalid-email,,Cologne,,,08-17-2024,unknown,
+305,Alice,user305@example.com,00491701234567,berlin ,Found,Lost black wallet near library,02-13-2025,,duplicate
+306,Mallory,invalid-email,00491701234567,Hamburg,Lost,Lost black wallet near library,12-01-2024,87.59,
+307,Charlie,user307@example.com,00491701234567,,Found,Blue backpack missing,2024-12-02,,duplicate
+308,David,user308@example.com,abc123,Cologne,FOUND,,19/12/2023,unknown,
+309,Charlie,invalid-email,123456789,Frankfurt,lost,Blue backpack missing,2023-11-28,unknown,
+310,Peggy,user310@example.com,abc123,MUNICH,,Lost black wallet near library,,199.31,
+311,Oscar,user311@example.com,123456789,,Lost,Found keys at cafeteria,16/10/2023,459.8,
+312,Oscar,user312@example.com,00491701234567,Berlin,lost,,,unknown,duplicate
+313,Oscar,user313@example.com,00491701234567,MUNICH,Found,Lost black wallet near library,,,duplicate
+314,,user314@example.com,123456789,Cologne,FOUND,Lost black wallet near library,,488.61,duplicate
+315,David,user315@example.com,123456789,,lost,Blue backpack missing,01-31-2026,211.56,duplicate
+316,Bob,invalid-email,+49 170 1234567,berlin ,,Blue backpack missing,2024-01-31,unknown,duplicate
+317,Mallory,user317@example.com,123456789,Cologne,FOUND,,1714245114.830199,unknown,duplicate
+318,Alice,user318@example.com,,Hamburg,Lost,Lost black wallet near library,11/08/2023,unknown,
+319,Peggy,user319@example.com,+49 170 1234567,,,,1730833914.830216,,
+320,,user320@example.com,00491701234567,,FOUND,Found keys at cafeteria,,177.91,
+321,David,user321@example.com,123456789,Berlin,lost,,11-19-2024,102.18,
+322,Alice,user322@example.com,00491701234567,berlin ,,Blue backpack missing,06-09-2025,unknown,
+323,Peggy,user323@example.com,123456789,Berlin,Found,,2024-07-15,unknown,
+324,Alice,user324@example.com,,Berlin,,,01-23-2025,unknown,
+325,Oscar,user325@example.com,,Cologne,,,,unknown,duplicate
+326,,user326@example.com,abc123,Munich,lost,Lost black wallet near library,19/07/2024,,
+327,Bob,user327@example.com,123456789,Munich,,Lost black wallet near library,1764270714.830296,207.42,
+328,Bob,user328@example.com,00491701234567,Munich,Lost,,,,
+329,Mallory,invalid-email,+49 170 1234567,Hamburg,FOUND,Found keys at cafeteria,,unknown,
+330,Mallory,invalid-email,123456789,Munich,Lost,Lost black wallet near library,10-07-2023,,
+331,Bob,invalid-email,abc123,Berlin,FOUND,,2024-11-29,482.02,
+332,Peggy,user332@example.com,,berlin ,,,1697224314.830382,,duplicate
+333,,user333@example.com,123456789,berlin ,Lost,,1697310714.830391,,duplicate
+334,Eve,user334@example.com,,Hamburg,lost,Blue backpack missing,2023-09-17,,
+335,,user335@example.com,00491701234567,berlin ,Lost,Blue backpack missing,05/06/2025,328.04,
+336,David,user336@example.com,,,Lost,,,244.59,duplicate
+337,,user337@example.com,abc123,berlin ,Lost,Found keys at cafeteria,2025-05-31,,duplicate
+338,,user338@example.com,00491701234567,Frankfurt,,,08/01/2026,,
+339,David,user339@example.com,abc123,Frankfurt,FOUND,,2024-06-14,,
+,Mallory,invalid-email,00491701234567,berlin ,Found,,30/09/2025,,duplicate
+341,Mallory,user341@example.com,00491701234567,Munich,Lost,Found keys at cafeteria,05/02/2024,unknown,
+342,Peggy,user342@example.com,abc123,Munich,Lost,Found keys at cafeteria,2023-07-20,163.89,
+343,,user343@example.com,,berlin ,Lost,Found keys at cafeteria,1747336314.830513,,
+344,,user344@example.com,00491701234567,Munich,,Found keys at cafeteria,12-26-2024,unknown,duplicate
+345,Oscar,invalid-email,+49 170 1234567,Frankfurt,lost,Blue backpack missing,28/12/2023,,duplicate
+346,Oscar,invalid-email,,berlin ,,Lost black wallet near library,,334.99,
+347,,invalid-email,,,,Blue backpack missing,29/02/2024,,duplicate
+348,Charlie,user348@example.com,123456789,,Found,Found keys at cafeteria,2023-09-08,381.15,
+349,Alice,user349@example.com,abc123,berlin ,,Lost black wallet near library,02-12-2025,,
+350,,user350@example.com,123456789,Berlin,,Blue backpack missing,,unknown,duplicate
+351,,user351@example.com,abc123,Berlin,,,25/09/2024,unknown,duplicate
+352,,invalid-email,123456789,,Lost,Blue backpack missing,,unknown,duplicate
+353,Alice,user353@example.com,+49 170 1234567,Munich,,,07-11-2025,unknown,
+,David,user354@example.com,+49 170 1234567,,Lost,Lost black wallet near library,,unknown,duplicate
+355,Charlie,user355@example.com,123456789,berlin ,Lost,Found keys at cafeteria,29/11/2024,422.85,duplicate
+356,Charlie,user356@example.com,abc123,,Lost,Blue backpack missing,2024-11-22,unknown,
+357,Charlie,user357@example.com,123456789,,Found,Lost black wallet near library,,23.82,
+358,David,user358@example.com,123456789,Berlin,,,,91.96,
+359,Mallory,user359@example.com,,Cologne,,Lost black wallet near library,03/09/2023,,
+360,David,user360@example.com,00491701234567,Munich,,,26/02/2026,,
+361,,user361@example.com,00491701234567,Munich,,Blue backpack missing,03/07/2024,191.78,duplicate
+362,Mallory,invalid-email,123456789,,Found,Blue backpack missing,05-22-2024,138.6,
+363,David,invalid-email,+49 170 1234567,Frankfurt,,Found keys at cafeteria,,,duplicate
+364,Peggy,invalid-email,123456789,MUNICH,Found,Found keys at cafeteria,04/07/2024,,duplicate
+365,Bob,user365@example.com,+49 170 1234567,Frankfurt,,,1711307514.830761,,
+366,Mallory,invalid-email,123456789,,,Blue backpack missing,10/05/2024,469.73,
+367,Peggy,user367@example.com,,berlin ,Found,Blue backpack missing,,426.04,
+368,Oscar,invalid-email,00491701234567,berlin ,Found,Blue backpack missing,07/03/2024,,
+369,Mallory,user369@example.com,+49 170 1234567,Munich,Lost,Blue backpack missing,1688670714.830804,,
+370,,invalid-email,00491701234567,Berlin,,Blue backpack missing,10-19-2023,116.65,
+371,Bob,user371@example.com,abc123,berlin ,FOUND,,2023-07-21,unknown,
+372,Bob,user372@example.com,+49 170 1234567,Berlin,,,1755976314.830855,,
+373,,user373@example.com,+49 170 1234567,berlin ,lost,Lost black wallet near library,,310.79,
+374,Bob,user374@example.com,abc123,Frankfurt,lost,Found keys at cafeteria,09-17-2024,,
+375,David,invalid-email,abc123,Munich,,,1698779514.830893,,
+376,Peggy,invalid-email,00491701234567,Frankfurt,,Found keys at cafeteria,04-02-2024,,
+377,Charlie,user377@example.com,+49 170 1234567,Munich,lost,,22/09/2023,58.99,
+378,Mallory,user378@example.com,,Berlin,Lost,,2025-02-25,,
+379,,user379@example.com,00491701234567,berlin ,lost,Found keys at cafeteria,16/10/2025,,duplicate
+380,Eve,user380@example.com,abc123,berlin ,,,,unknown,
+381,Charlie,invalid-email,00491701234567,Frankfurt,Lost,,2025-01-17,unknown,
+382,,user382@example.com,00491701234567,MUNICH,,,1687288314.830958,,duplicate
+383,Eve,invalid-email,123456789,Frankfurt,Lost,Lost black wallet near library,27/05/2024,,
+384,Eve,invalid-email,123456789,MUNICH,lost,Blue backpack missing,16/04/2024,,
+385,Mallory,user385@example.com,abc123,Frankfurt,Lost,,2025-08-23,unknown,
+386,Bob,invalid-email,abc123,,,Lost black wallet near library,06-10-2024,384.6,
+387,Peggy,user387@example.com,,Cologne,,Lost black wallet near library,02-15-2025,,
+388,,user388@example.com,,Frankfurt,Lost,Found keys at cafeteria,1754593914.831025,unknown,
+389,Alice,user389@example.com,,,Found,,01-25-2025,unknown,
+390,Charlie,user390@example.com,00491701234567,Frankfurt,,Blue backpack missing,2023-11-17,203.74,duplicate
+391,David,user391@example.com,+49 170 1234567,Berlin,Found,,25/11/2025,51.4,
+392,,user392@example.com,,berlin ,,,,178.21,
+393,,user393@example.com,00491701234567,Berlin,Lost,,2023-08-31,21.72,
+394,David,invalid-email,00491701234567,MUNICH,,,1733685114.831089,unknown,
+395,Alice,user395@example.com,+49 170 1234567,Cologne,lost,Blue backpack missing,07/12/2023,unknown,
+396,Bob,invalid-email,00491701234567,MUNICH,Lost,,2025-07-29,327.43,
+397,Oscar,user397@example.com,123456789,Munich,lost,,,64.7,
+398,Oscar,user398@example.com,abc123,MUNICH,lost,Blue backpack missing,1763320314.831126,68.95,
+399,Oscar,invalid-email,+49 170 1234567,Hamburg,,Lost black wallet near library,2025-04-23,428.76,
+400,Mallory,user400@example.com,+49 170 1234567,Hamburg,,,2024-08-22,290.55,duplicate
+401,Peggy,user401@example.com,+49 170 1234567,Berlin,Lost,Blue backpack missing,1721589114.831153,66.3,
+402,,user402@example.com,+49 170 1234567,Frankfurt,lost,,1743793914.831162,,
+403,Alice,user403@example.com,+49 170 1234567,Frankfurt,,,,,
+404,Eve,user404@example.com,+49 170 1234567,MUNICH,,,2024-03-24,unknown,duplicate
+405,,user405@example.com,123456789,Berlin,Lost,Blue backpack missing,18/08/2025,182.3,
+406,Oscar,user406@example.com,,,,Found keys at cafeteria,2025-01-23,unknown,duplicate
+407,,user407@example.com,abc123,berlin ,,,2026-01-14,,
+408,Mallory,user408@example.com,abc123,Frankfurt,FOUND,Blue backpack missing,2025-10-15,327.42,
+409,Oscar,user409@example.com,abc123,,,Blue backpack missing,1705605114.831223,unknown,
+410,Charlie,user410@example.com,,,Found,Lost black wallet near library,1728760314.831231,unknown,
+411,,invalid-email,+49 170 1234567,Frankfurt,FOUND,Found keys at cafeteria,1769281914.83124,32.8,
+,Bob,user412@example.com,,,FOUND,Blue backpack missing,,unknown,
+413,Peggy,user413@example.com,123456789,,,Lost black wallet near library,,,duplicate
+414,Mallory,user414@example.com,123456789,Frankfurt,,,04-30-2025,unknown,
+415,Mallory,user415@example.com,abc123,Cologne,Lost,Blue backpack missing,,,duplicate
+416,,user416@example.com,+49 170 1234567,Hamburg,FOUND,,04-06-2025,,duplicate
+417,,user417@example.com,,,FOUND,Blue backpack missing,27/06/2024,,duplicate
+,Alice,user418@example.com,+49 170 1234567,Munich,Lost,,1771441914.831303,,
+419,Alice,user419@example.com,+49 170 1234567,Frankfurt,lost,Lost black wallet near library,1688843514.831319,unknown,
+420,David,user420@example.com,123456789,Munich,FOUND,Found keys at cafeteria,,unknown,
+421,Oscar,user421@example.com,00491701234567,Berlin,,,,,duplicate
+422,Charlie,user422@example.com,,Berlin,,Lost black wallet near library,1724785914.831347,,
+423,Eve,invalid-email,,Munich,,Lost black wallet near library,23/12/2023,220.62,duplicate
+424,Peggy,user424@example.com,abc123,Munich,,,2025-10-12,unknown,
+425,David,invalid-email,+49 170 1234567,berlin ,Found,,03-26-2025,unknown,duplicate
+426,Alice,user426@example.com,abc123,Frankfurt,Found,,02-10-2025,unknown,duplicate
+,,user427@example.com,00491701234567,Munich,FOUND,Lost black wallet near library,,unknown,duplicate
+428,David,user428@example.com,00491701234567,Cologne,FOUND,Lost black wallet near library,09/11/2025,unknown,
+429,,invalid-email,abc123,Hamburg,,,1763406714.831408,,
+,Eve,invalid-email,abc123,,FOUND,,09-26-2025,,
+431,Charlie,user431@example.com,123456789,berlin ,,Found keys at cafeteria,1713467514.831424,unknown,
+432,Bob,invalid-email,+49 170 1234567,berlin ,FOUND,Blue backpack missing,1712949114.831432,unknown,
+433,Peggy,invalid-email,+49 170 1234567,Munich,lost,Blue backpack missing,2025-10-29,79.02,duplicate
+434,Bob,user434@example.com,abc123,Berlin,,,1726513914.831451,unknown,
+435,Eve,invalid-email,abc123,MUNICH,,,11-15-2023,unknown,duplicate
+436,Mallory,user436@example.com,+49 170 1234567,MUNICH,FOUND,Found keys at cafeteria,,unknown,duplicate
+437,Peggy,invalid-email,123456789,,Lost,Blue backpack missing,1748459514.831477,,duplicate
+438,Oscar,user438@example.com,abc123,Berlin,lost,,2025-02-28,358.3,
+439,Oscar,user439@example.com,123456789,,lost,Found keys at cafeteria,07-17-2024,,
+440,Eve,invalid-email,00491701234567,Munich,Found,Lost black wallet near library,09/02/2025,358.43,
+,Eve,user441@example.com,abc123,Berlin,FOUND,,2026-02-05,485.97,duplicate
+442,,user442@example.com,123456789,Cologne,,Found keys at cafeteria,29/02/2024,324.22,
+443,Charlie,user443@example.com,,Cologne,Lost,,09-18-2024,,
+444,Alice,invalid-email,,Munich,,,,,
+445,David,user445@example.com,,,Lost,Found keys at cafeteria,04/05/2025,,
+,Eve,user446@example.com,,Cologne,FOUND,,11-16-2025,,
+447,Charlie,user447@example.com,+49 170 1234567,Hamburg,Lost,Found keys at cafeteria,,,
+448,Bob,user448@example.com,,Cologne,Lost,,2025-06-05,unknown,
+,Oscar,user449@example.com,+49 170 1234567,MUNICH,,,,unknown,
+450,,user450@example.com,123456789,Berlin,Lost,,2023-08-02,,
+451,Mallory,user451@example.com,123456789,Berlin,,Blue backpack missing,1713121914.831607,unknown,
+452,Mallory,user452@example.com,,Hamburg,,Found keys at cafeteria,02-08-2024,,
+453,,user453@example.com,+49 170 1234567,Frankfurt,,,,357.91,
+454,Alice,user454@example.com,00491701234567,MUNICH,lost,,,,
+455,,user455@example.com,,Hamburg,lost,,08-15-2024,240.08,duplicate
+456,Oscar,user456@example.com,00491701234567,,,Blue backpack missing,1749928314.831652,,
+,David,user457@example.com,,Hamburg,Lost,,01-19-2025,,
+458,,invalid-email,abc123,,lost,Blue backpack missing,2024-09-13,273.27,
+,Charlie,user459@example.com,,Munich,,Blue backpack missing,,,duplicate
+460,Oscar,user460@example.com,,berlin ,Found,Lost black wallet near library,,unknown,
+461,Mallory,user461@example.com,,Cologne,lost,,1726513914.831698,45.05,
+462,,user462@example.com,123456789,,,Found keys at cafeteria,,274.68,
+463,,invalid-email,abc123,Munich,Lost,Found keys at cafeteria,,275.73,duplicate
+464,Mallory,invalid-email,00491701234567,berlin ,,Lost black wallet near library,29/08/2024,unknown,duplicate
+465,Mallory,invalid-email,+49 170 1234567,berlin ,Found,Lost black wallet near library,10-26-2025,139.95,
+466,Mallory,user466@example.com,,Cologne,FOUND,Found keys at cafeteria,01-08-2026,,
+467,,user467@example.com,00491701234567,,Lost,Found keys at cafeteria,,,duplicate
+468,Bob,user468@example.com,+49 170 1234567,Hamburg,,,18/05/2025,,duplicate
+469,,user469@example.com,abc123,,Found,Found keys at cafeteria,1747422714.831768,unknown,
+470,,invalid-email,+49 170 1234567,berlin ,FOUND,Found keys at cafeteria,11-01-2023,,
+471,Peggy,user471@example.com,abc123,,,,11-13-2025,378.54,
+472,Eve,user472@example.com,+49 170 1234567,Frankfurt,,Found keys at cafeteria,05-10-2024,86.74,duplicate
+473,Oscar,invalid-email,abc123,,Found,Blue backpack missing,1752693114.831804,,
+474,Charlie,user474@example.com,00491701234567,Berlin,,Lost black wallet near library,10-05-2025,463.89,
+475,Eve,user475@example.com,,,Found,Blue backpack missing,,23.95,
+476,Peggy,user476@example.com,abc123,Hamburg,,Lost black wallet near library,2023-08-08,unknown,duplicate
+477,Oscar,user477@example.com,+49 170 1234567,Hamburg,Lost,,1696273914.831838,unknown,
+478,Charlie,user478@example.com,,MUNICH,,Blue backpack missing,09-18-2024,330.02,
+479,Peggy,user479@example.com,00491701234567,,Lost,Lost black wallet near library,10-31-2023,353.31,
+,,user480@example.com,00491701234567,MUNICH,Found,,02/11/2023,unknown,
+481,Eve,user481@example.com,+49 170 1234567,,FOUND,Found keys at cafeteria,1687461114.831935,262.14,
+482,,user482@example.com,123456789,Berlin,,Blue backpack missing,1753902714.831943,unknown,duplicate
+483,Bob,user483@example.com,abc123,Cologne,,Blue backpack missing,23/11/2023,21.41,duplicate
+,,user484@example.com,00491701234567,berlin ,FOUND,Found keys at cafeteria,17/05/2025,9.34,
+485,Alice,user485@example.com,+49 170 1234567,Cologne,lost,Found keys at cafeteria,1750446714.831975,,
+486,Mallory,user486@example.com,abc123,berlin ,Found,Blue backpack missing,2025-07-23,unknown,duplicate
+487,Bob,invalid-email,abc123,Munich,Lost,,,,
+488,Peggy,invalid-email,abc123,berlin ,,,01-16-2025,152.84,
+489,Oscar,user489@example.com,00491701234567,berlin ,,Found keys at cafeteria,,unknown,duplicate
+490,Oscar,invalid-email,00491701234567,berlin ,,Lost black wallet near library,2025-02-16,unknown,
+,Oscar,user491@example.com,,Frankfurt,lost,Found keys at cafeteria,,192.42,
+492,David,user492@example.com,,Frankfurt,Found,,1762801914.832036,368.14,duplicate
+493,Oscar,user493@example.com,abc123,MUNICH,,,,,duplicate
+494,Eve,user494@example.com,123456789,Berlin,,Lost black wallet near library,2025-07-22,,duplicate
+,Peggy,user495@example.com,abc123,,lost,Found keys at cafeteria,10/03/2025,,
+496,Peggy,user496@example.com,00491701234567,Hamburg,FOUND,Blue backpack missing,,unknown,
+497,Charlie,user497@example.com,00491701234567,Frankfurt,,Found keys at cafeteria,2025-05-02,,duplicate
+498,Eve,user498@example.com,00491701234567,,Found,Lost black wallet near library,2024-08-14,68.68,duplicate
+499,Bob,invalid-email,abc123,,Lost,Lost black wallet near library,1762024314.832096,,duplicate
