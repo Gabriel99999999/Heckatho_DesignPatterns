@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSV Cleaning + Schema Mapping MVP</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>CSV Cleaning + Schema Mapping</h1>
+    <p class="subtitle">Upload -> profile -> suggested mapping -> apply -> download</p>
+
+    <section class="card">
+      <h2>1. Upload CSV</h2>
+      <div class="row">
+        <input type="file" id="csvFile" accept=".csv,text/csv" />
+        <button id="uploadBtn">Upload</button>
+      </div>
+      <p id="status" class="status"></p>
+    </section>
+
+    <section class="card hidden" id="summarySection">
+      <h2>2. Schema & Anomalies</h2>
+      <div id="summary"></div>
+      <h3>Column Profiler</h3>
+      <div class="table-wrap"><table id="profileTable"></table></div>
+      <h3>Anomalies</h3>
+      <div id="anomalyList"></div>
+    </section>
+
+    <section class="card hidden" id="transformSection">
+      <h2>3. Suggested Mapping Rules</h2>
+      <div id="rules"></div>
+      <button id="applyBtn">Apply Selected Rules</button>
+    </section>
+
+    <section class="card hidden" id="previewSection">
+      <h2>4. Cleaned Preview</h2>
+      <div class="table-wrap"><table id="previewTable"></table></div>
+      <div class="row top-gap">
+        <button id="downloadCsvBtn">Download CSV</button>
+        <button id="downloadJsonBtn">Download JSON</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
