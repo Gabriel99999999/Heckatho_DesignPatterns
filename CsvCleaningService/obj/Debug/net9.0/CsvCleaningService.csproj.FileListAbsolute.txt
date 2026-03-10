@@ -18,7 +18,6 @@ C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Hecka
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\scopedcss\bundle\CsvCleaningService.styles.css
-C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\compressed\v3sz4qvl0k-ndxcll45mm.gz
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\compressed\3qvqmp7g9t-79cifqf2a5.gz
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\compressed\rv6jmwkx9h-e4f813b4up.gz
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\staticwebassets.build.json
@@ -30,4 +29,4 @@ C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Hecka
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\CsvCleaningService.pdb
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\CsvCleaningService.genruntimeconfig.cache
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\ref\CsvCleaningService.dll
-C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\compressed\v3sz4qvl0k-36icv750j1.gz

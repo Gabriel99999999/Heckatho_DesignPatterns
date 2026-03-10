@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CsvCleaningService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0b98fdca7897f249d7716e5fbd63fa10555d34d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07508d778f17d8288f4c4634ad5e73b50f68d318")]
 [assembly: System.Reflection.AssemblyProductAttribute("CsvCleaningService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CsvCleaningService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

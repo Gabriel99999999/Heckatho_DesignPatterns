@@ -1,7 +1,9 @@
-﻿let state = {
+let state = {
   importId: null,
   fileName: null,
-  suggestedRules: []
+  suggestedRules: [],
+  latestJobId: null,
+  pollTimer: null
 };
 
 const csvFile = document.getElementById("csvFile");
@@ -30,7 +32,10 @@ async function uploadCsv() {
   const formData = new FormData();
   formData.append("file", file);
 
-  setStatus("Uploading and profiling...");
+  stopPolling();
+  setBusy(true);
+  setStatus("Uploading file and queueing profiling job...");
+
   const res = await fetch("/api/import/upload", {
     method: "POST",
     body: formData
@@ -38,16 +43,23 @@ async function uploadCsv() {
 
   const data = await res.json();
   if (!res.ok) {
+    setBusy(false);
     setStatus(data.error || "Upload failed.");
     return;
   }
 
   state.importId = data.importId;
   state.fileName = data.fileName;
-  state.suggestedRules = data.suggestedRules || [];
+  state.latestJobId = data.jobId || data.latestJobId || null;
 
-  renderResponse(data);
-  setStatus(`Loaded ${data.rowCount} rows from ${data.fileName}.`);
+  if (data.rowCount) {
+    renderResponse(data);
+    setBusy(false);
+    setStatus(buildLoadedMessage(data));
+    return;
+  }
+
+  await waitForImport(data.importId, state.latestJobId, "Profiling");
 }
 
 async function applyRules() {
@@ -60,7 +72,10 @@ async function applyRules() {
     .filter(x => x.checked)
     .map(x => state.suggestedRules[Number(x.dataset.index)]);
 
-  setStatus("Applying transformations...");
+  stopPolling();
+  setBusy(true);
+  setStatus("Queueing transform job...");
+
   const res = await fetch(`/api/import/${state.importId}/transform`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -69,12 +84,51 @@ async function applyRules() {
 
   const data = await res.json();
   if (!res.ok) {
+    setBusy(false);
     setStatus(data.error || "Transformation failed.");
     return;
   }
 
-  renderResponse(data);
-  setStatus("Transformations applied.");
+  state.latestJobId = data.jobId || null;
+  await waitForImport(state.importId, state.latestJobId, "Transform");
+}
+
+async function waitForImport(importId, jobId, label) {
+  const startedAt = Date.now();
+
+  const poll = async () => {
+    try {
+      if (jobId) {
+        const job = await fetchJson(`/api/job/${jobId}`);
+        if (job.status === "failed") {
+          stopPolling();
+          setBusy(false);
+          setStatus(`${label} failed: ${job.error || "Unknown error"}`);
+          return;
+        }
+
+        setStatus(`${label} job ${job.status}...`);
+      }
+
+      const result = await fetchJson(`/api/import/${importId}`);
+      if (result.rowCount) {
+        stopPolling();
+        renderResponse(result);
+        setBusy(false);
+        setStatus(buildLoadedMessage(result, Date.now() - startedAt));
+        return;
+      }
+    } catch (error) {
+      stopPolling();
+      setBusy(false);
+      setStatus(error.message || `${label} failed.`);
+      return;
+    }
+
+    state.pollTimer = window.setTimeout(poll, 1000);
+  };
+
+  await poll();
 }
 
 function renderResponse(data) {
@@ -86,6 +140,8 @@ function renderResponse(data) {
     <span class="badge">Rows: ${data.rowCount}</span>
     <span class="badge">Columns: ${data.headers.length}</span>
     <span class="badge">ImportId: ${data.importId}</span>
+    <span class="badge">Rows/s: ${Math.round(data.rowsPerSecond || 0)}</span>
+    <span class="badge">Exec ms: ${data.executionMs || 0}</span>
   `;
 
   renderProfileTable(data.profile || []);
@@ -93,7 +149,10 @@ function renderResponse(data) {
   renderRules(data.suggestedRules || []);
   renderPreview(data.headers || [], data.previewRows || []);
 
+  state.importId = data.importId;
+  state.fileName = data.fileName;
   state.suggestedRules = data.suggestedRules || [];
+  state.latestJobId = data.latestJobId || null;
 }
 
 function renderProfileTable(profile) {
@@ -117,11 +176,13 @@ function renderProfileTable(profile) {
       p.maxLength,
       (p.samples || []).join(" | ")
     ];
+
     cells.forEach(c => {
       const td = document.createElement("td");
       td.textContent = String(c);
       tr.appendChild(td);
     });
+
     table.appendChild(tr);
   });
 }
@@ -186,6 +247,33 @@ function download(format) {
   }
 
   window.location.href = `/api/import/${state.importId}/download?format=${format}`;
+}
+
+function setBusy(isBusy) {
+  uploadBtn.disabled = isBusy;
+  applyBtn.disabled = isBusy;
+}
+
+function stopPolling() {
+  if (state.pollTimer) {
+    window.clearTimeout(state.pollTimer);
+    state.pollTimer = null;
+  }
+}
+
+async function fetchJson(url) {
+  const res = await fetch(url);
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Request failed.");
+  }
+  return data;
+}
+
+function buildLoadedMessage(data, elapsedMs) {
+  const dedupe = data.deduplicated ? " Reused existing import by file hash." : "";
+  const elapsed = elapsedMs ? ` Finished in ~${elapsedMs} ms.` : "";
+  return `Loaded ${data.rowCount} rows from ${data.fileName}.${dedupe}${elapsed}`;
 }
 
 function setStatus(msg) {
