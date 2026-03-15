@@ -53,11 +53,11 @@ public sealed class CsvProcessingService
     private async Task<int> ProcessTransformAsync(ImportSession session, List<TransformRule> rules, CancellationToken ct)
     {
         var outputPath = _storage.CreateDerivedCsvPath(session.Id);
-        await _csvFileProcessor.TransformFileAsync(session.OriginalFilePath, outputPath, rules, ct);
+        var transformBenchmark = await _csvFileProcessor.TransformFileAsync(session.OriginalFilePath, outputPath, rules, ct);
 
         var analysis = await _csvFileProcessor.AnalyzeFileAsync(outputPath, _options.MaxUniqueTracking, ct);
         var oldPath = session.CurrentFilePath;
-        session.SetSnapshot(ToSnapshot(analysis), outputPath);
+        session.SetSnapshot(ToSnapshot(analysis, transformBenchmark), outputPath);
 
         if (!string.Equals(oldPath, session.OriginalFilePath, StringComparison.OrdinalIgnoreCase)
             && !string.Equals(oldPath, outputPath, StringComparison.OrdinalIgnoreCase))
@@ -68,11 +68,8 @@ public sealed class CsvProcessingService
         return analysis.RowCount;
     }
 
-    private static ImportSnapshot ToSnapshot(CsvAnalysisResult analysis)
+    private static ImportSnapshot ToSnapshot(CsvAnalysisResult analysis, BenchmarkMetrics? overrideBenchmark = null)
     {
-        var elapsed = Math.Max(1, analysis.ExecutionMs);
-        var rowsPerSecond = analysis.RowCount <= 0 ? 0d : Math.Round(analysis.RowCount / (elapsed / 1000d), 2);
-
         return new ImportSnapshot(
             analysis.RowCount,
             analysis.Headers,
@@ -80,7 +77,7 @@ public sealed class CsvProcessingService
             analysis.Profile,
             analysis.Anomalies,
             analysis.SuggestedRules,
-            elapsed,
-            rowsPerSecond);
+            overrideBenchmark ?? analysis.Benchmark,
+            analysis.SuggestionProvider);
     }
 }

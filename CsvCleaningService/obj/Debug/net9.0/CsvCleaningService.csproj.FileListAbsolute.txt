@@ -29,4 +29,5 @@ C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Hecka
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\CsvCleaningService.pdb
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\CsvCleaningService.genruntimeconfig.cache
 C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\ref\CsvCleaningService.dll
-C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\compressed\v3sz4qvl0k-36icv750j1.gz
+C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\bin\Debug\net9.0\Evaluation\Fixtures\contacts-fixture.spec.json
+C:\Users\wiede\Documents\Fachhochschule Master\4. Semester\Design Patterns\Heckathon\Heckatho_DesignPatterns\CsvCleaningService\obj\Debug\net9.0\compressed\v3sz4qvl0k-cyd4c062ha.gz

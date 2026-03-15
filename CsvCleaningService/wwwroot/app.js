@@ -142,6 +142,9 @@ function renderResponse(data) {
     <span class="badge">ImportId: ${data.importId}</span>
     <span class="badge">Rows/s: ${Math.round(data.rowsPerSecond || 0)}</span>
     <span class="badge">Exec ms: ${data.executionMs || 0}</span>
+    <span class="badge">Peak MB: ${formatPeakMemory(data.benchmark?.peakMemoryBytes)}</span>
+    <span class="badge">P95 ms: ${data.benchmark?.latency?.p95Ms ?? 0}</span>
+    <span class="badge">AI: ${escapeHtml(data.suggestionProvider || "n/a")}</span>
   `;
 
   renderProfileTable(data.profile || []);
@@ -274,6 +277,14 @@ function buildLoadedMessage(data, elapsedMs) {
   const dedupe = data.deduplicated ? " Reused existing import by file hash." : "";
   const elapsed = elapsedMs ? ` Finished in ~${elapsedMs} ms.` : "";
   return `Loaded ${data.rowCount} rows from ${data.fileName}.${dedupe}${elapsed}`;
+}
+
+function formatPeakMemory(bytes) {
+  if (!bytes) {
+    return "0";
+  }
+
+  return (bytes / (1024 * 1024)).toFixed(2);
 }
 
 function setStatus(msg) {

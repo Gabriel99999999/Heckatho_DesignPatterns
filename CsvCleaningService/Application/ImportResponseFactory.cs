@@ -21,8 +21,10 @@ public sealed class ImportResponseFactory
             profile = snapshot.Profile,
             anomalies = snapshot.Anomalies,
             suggestedRules = snapshot.SuggestedRules,
-            executionMs = snapshot.ExecutionMs,
-            rowsPerSecond = snapshot.RowsPerSecond
+            suggestionProvider = snapshot.SuggestionProvider,
+            benchmark = snapshot.Benchmark,
+            executionMs = snapshot.Benchmark.ExecutionMs,
+            rowsPerSecond = snapshot.Benchmark.RowsPerSecond
         };
     }
 }

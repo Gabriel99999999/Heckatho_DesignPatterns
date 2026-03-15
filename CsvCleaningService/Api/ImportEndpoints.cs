@@ -1,6 +1,7 @@
 using CsvCleaningService.Application;
 using CsvCleaningService.Domain.Entities;
 using CsvCleaningService.Domain.Models;
+using CsvCleaningService.Evaluation;
 using CsvCleaningService.Infrastructure.Csv;
 using CsvCleaningService.Infrastructure.Storage;
 using CsvCleaningService.Infrastructure.Stores;
@@ -16,6 +17,7 @@ public static class ImportEndpoints
         app.MapGet("/api/import/{importId}", GetImport);
         app.MapGet("/api/job/{jobId}", GetJob);
         app.MapGet("/api/import/{importId}/download", DownloadAsync);
+        app.MapPost("/api/eval/run", RunEvalAsync);
     }
 
     private static async Task<IResult> UploadAsync(HttpRequest request, ImportStore store, OutboxStore outbox, FileStorage storage, CancellationToken ct)
@@ -69,14 +71,14 @@ public static class ImportEndpoints
         });
     }
 
-    private static async Task<IResult> QueueTransformAsync(string importId, TransformRequest request, ImportStore store, OutboxStore outbox, CancellationToken ct)
+    private static async Task<IResult> QueueTransformAsync(string importId, TransformRequest request, ImportStore store, OutboxStore outbox, Application.TransformRuleValidator validator, CancellationToken ct)
     {
         if (!store.TryGet(importId, out var session))
         {
             return Results.NotFound(new { error = "Import session not found." });
         }
 
-        var rules = (request.Rules ?? []).Where(rule => rule.Enabled).ToList();
+        var rules = validator.Validate((request.Rules ?? []).Where(rule => rule.Enabled), session.Snapshot?.Headers ?? []);
         var message = await outbox.EnqueueAsync(importId, JobType.Transform, rules, ct);
         session.SetLatestJobId(message.Id);
 
@@ -147,6 +149,12 @@ public static class ImportEndpoints
         }
 
         return Results.File(session.CurrentFilePath, "text/csv", $"{fileName}.csv");
+    }
+
+    private static async Task<IResult> RunEvalAsync(EvalHarnessService evalHarnessService, IWebHostEnvironment environment, CancellationToken ct)
+    {
+        var result = await evalHarnessService.RunAsync(environment.ContentRootPath, ct);
+        return Results.Ok(result);
     }
 
     private static string BuildCleanName(string original)

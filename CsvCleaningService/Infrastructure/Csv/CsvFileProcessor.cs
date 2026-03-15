@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -9,17 +10,23 @@ namespace CsvCleaningService.Infrastructure.Csv;
 public sealed class CsvFileProcessor
 {
     private readonly ContactValueValidator _validator;
-    private readonly TransformSuggestionService _transformSuggestionService;
+    private readonly AiMappingSuggestionService _aiMappingSuggestionService;
+    private readonly SandboxedTransformPipeline _pipeline;
 
-    public CsvFileProcessor(ContactValueValidator validator, TransformSuggestionService transformSuggestionService)
+    public CsvFileProcessor(
+        ContactValueValidator validator,
+        AiMappingSuggestionService aiMappingSuggestionService,
+        SandboxedTransformPipeline pipeline)
     {
         _validator = validator;
-        _transformSuggestionService = transformSuggestionService;
+        _aiMappingSuggestionService = aiMappingSuggestionService;
+        _pipeline = pipeline;
     }
 
     public async Task<CsvAnalysisResult> AnalyzeFileAsync(string filePath, int uniqueTrackingLimit, CancellationToken ct)
     {
-        var started = DateTimeOffset.UtcNow;
+        var stopwatch = Stopwatch.StartNew();
+        var benchmark = new BenchmarkSampler();
 
         await using var stream = File.OpenRead(filePath);
         using var reader = new StreamReader(stream, Encoding.UTF8);
@@ -27,7 +34,7 @@ public sealed class CsvFileProcessor
         var headerLine = await reader.ReadLineAsync(ct);
         if (string.IsNullOrWhiteSpace(headerLine))
         {
-            return new CsvAnalysisResult([], 0, [], [], [], [], 1);
+            return new CsvAnalysisResult([], 0, [], [], [], [], benchmark.Build(1, 0), "local-heuristic-llm");
         }
 
         var headers = ParseLine(headerLine).Select(h => h.Trim()).ToList();
@@ -45,32 +52,34 @@ public sealed class CsvFileProcessor
         string? line;
         while ((line = await reader.ReadLineAsync(ct)) is not null)
         {
-            if (string.IsNullOrWhiteSpace(line))
+            var rowWatch = Stopwatch.StartNew();
+
+            if (!string.IsNullOrWhiteSpace(line))
             {
-                continue;
+                var values = ParseLine(line);
+                var row = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+                for (var i = 0; i < headers.Count; i++)
+                {
+                    var value = i < values.Count ? values[i] : string.Empty;
+                    row[headers[i]] = value;
+                    accumulators[headers[i]].Observe(value);
+                }
+
+                if (hasIdColumn && row.TryGetValue("id", out var idValue) && !string.IsNullOrWhiteSpace(idValue) && !seenIds.Add(idValue))
+                {
+                    duplicateIdCount++;
+                }
+
+                if (previewRows.Count < 20)
+                {
+                    previewRows.Add(row);
+                }
+
+                rowCount++;
             }
 
-            var values = ParseLine(line);
-            var row = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-
-            for (var i = 0; i < headers.Count; i++)
-            {
-                var value = i < values.Count ? values[i] : string.Empty;
-                row[headers[i]] = value;
-                accumulators[headers[i]].Observe(value);
-            }
-
-            if (hasIdColumn && row.TryGetValue("id", out var idValue) && !string.IsNullOrWhiteSpace(idValue) && !seenIds.Add(idValue))
-            {
-                duplicateIdCount++;
-            }
-
-            if (previewRows.Count < 20)
-            {
-                previewRows.Add(row);
-            }
-
-            rowCount++;
+            benchmark.CaptureRow(rowWatch.Elapsed.TotalMilliseconds);
         }
 
         var profile = headers.Select(h => accumulators[h].ToProfile(rowCount)).ToList();
@@ -80,15 +89,24 @@ public sealed class CsvFileProcessor
             anomalies.Add(new Anomaly("id", "duplicate_id", "ID column has duplicate values.", duplicateIdCount));
         }
 
-        var suggestions = _transformSuggestionService.Suggest(headers, anomalies);
-        var executionMs = Math.Max(1, (long)(DateTimeOffset.UtcNow - started).TotalMilliseconds);
+        var (suggestions, provider) = _aiMappingSuggestionService.Suggest(headers, profile, anomalies);
+        stopwatch.Stop();
 
-        return new CsvAnalysisResult(headers, rowCount, previewRows, profile, anomalies, suggestions, executionMs);
+        return new CsvAnalysisResult(
+            headers,
+            rowCount,
+            previewRows,
+            profile,
+            anomalies,
+            suggestions,
+            benchmark.Build(stopwatch.ElapsedMilliseconds, rowCount),
+            provider);
     }
 
-    public async Task TransformFileAsync(string inputPath, string outputPath, List<TransformRule> rules, CancellationToken ct)
+    public async Task<BenchmarkMetrics> TransformFileAsync(string inputPath, string outputPath, List<TransformRule> rules, CancellationToken ct)
     {
-        var enabledRules = rules.Where(r => r.Enabled).ToList();
+        var stopwatch = Stopwatch.StartNew();
+        var benchmark = new BenchmarkSampler();
 
         await using var inputStream = File.OpenRead(inputPath);
         using var reader = new StreamReader(inputStream, Encoding.UTF8);
@@ -98,36 +116,43 @@ public sealed class CsvFileProcessor
         var headerLine = await reader.ReadLineAsync(ct);
         if (string.IsNullOrWhiteSpace(headerLine))
         {
-            return;
+            return benchmark.Build(1, 0);
         }
 
         var sourceHeaders = ParseLine(headerLine).Select(h => h.Trim()).ToList();
+        var enabledRules = _pipeline.ValidateRules(rules.Where(r => r.Enabled), sourceHeaders);
         var outputHeaders = ApplyHeaderRules(sourceHeaders, enabledRules);
         await writer.WriteLineAsync(string.Join(',', outputHeaders.Select(Escape)));
 
+        var rowCount = 0;
         string? line;
         while ((line = await reader.ReadLineAsync(ct)) is not null)
         {
-            if (string.IsNullOrWhiteSpace(line))
+            var rowWatch = Stopwatch.StartNew();
+
+            if (!string.IsNullOrWhiteSpace(line))
             {
-                continue;
+                var values = ParseLine(line);
+                var row = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+                for (var i = 0; i < sourceHeaders.Count; i++)
+                {
+                    row[sourceHeaders[i]] = i < values.Count ? values[i] : string.Empty;
+                }
+
+                ApplyRowRules(row, enabledRules);
+
+                var orderedValues = outputHeaders.Select(h => row.TryGetValue(h, out var value) ? value ?? string.Empty : string.Empty);
+                await writer.WriteLineAsync(string.Join(',', orderedValues.Select(Escape)));
+                rowCount++;
             }
 
-            var values = ParseLine(line);
-            var row = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-
-            for (var i = 0; i < sourceHeaders.Count; i++)
-            {
-                row[sourceHeaders[i]] = i < values.Count ? values[i] : string.Empty;
-            }
-
-            ApplyRowRules(row, enabledRules);
-
-            var orderedValues = outputHeaders.Select(h => row.TryGetValue(h, out var value) ? value ?? string.Empty : string.Empty);
-            await writer.WriteLineAsync(string.Join(',', orderedValues.Select(Escape)));
+            benchmark.CaptureRow(rowWatch.Elapsed.TotalMilliseconds);
         }
 
         await writer.FlushAsync(ct);
+        stopwatch.Stop();
+        return benchmark.Build(stopwatch.ElapsedMilliseconds, rowCount);
     }
 
     public async Task WriteJsonAsync(string csvPath, Stream output, CancellationToken ct)
@@ -203,27 +228,8 @@ public sealed class CsvFileProcessor
             }
 
             var value = row.TryGetValue(actualKey, out var existing) ? existing ?? string.Empty : string.Empty;
-            row[actualKey] = ApplyOperation(rule.Operation, value);
+            row[actualKey] = _pipeline.Apply(rule, value);
         }
-    }
-
-    private string ApplyOperation(string operation, string value)
-    {
-        return operation.ToLowerInvariant() switch
-        {
-            "trim" => value.Trim(),
-            "tolower" => value.ToLowerInvariant(),
-            "toupper" => value.ToUpperInvariant(),
-            "nullifempty" => string.IsNullOrWhiteSpace(value) ? string.Empty : value,
-            "normalizestatus" => NormalizeStatus(value),
-            "normalizecity" => NormalizeCity(value),
-            "normalizephone" => NormalizePhone(value),
-            "removeinvalidphone" => _validator.IsValidPhone(value) ? value : string.Empty,
-            "removeinvalidemail" => _validator.IsValidEmail(value) ? value : string.Empty,
-            "parsenumber" => ParseNumber(value),
-            "normalizedate" => NormalizeDate(value),
-            _ => value
-        };
     }
 
     private static void RenameColumn(Dictionary<string, string> row, string oldName, string newName)
@@ -290,82 +296,6 @@ public sealed class CsvFileProcessor
         return values;
     }
 
-    private static string NormalizeStatus(string value)
-    {
-        return value.Trim().ToLowerInvariant() switch
-        {
-            "lost" => "Lost",
-            "found" => "Found",
-            _ => value.Trim()
-        };
-    }
-
-    private static string NormalizeCity(string value)
-    {
-        var trimmed = value.Trim();
-        return string.IsNullOrWhiteSpace(trimmed)
-            ? string.Empty
-            : CultureInfo.InvariantCulture.TextInfo.ToTitleCase(trimmed.ToLowerInvariant());
-    }
-
-    private static string NormalizePhone(string value)
-    {
-        var trimmed = value.Trim();
-        if (string.IsNullOrWhiteSpace(trimmed))
-        {
-            return string.Empty;
-        }
-
-        if (trimmed.StartsWith("0049", StringComparison.Ordinal))
-        {
-            trimmed = $"+49{trimmed[4..]}";
-        }
-
-        return trimmed.Replace(" ", string.Empty);
-    }
-
-    private static string ParseNumber(string value)
-    {
-        if (string.IsNullOrWhiteSpace(value) || value.Equals("unknown", StringComparison.OrdinalIgnoreCase))
-        {
-            return string.Empty;
-        }
-
-        return double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed.ToString("0.###", CultureInfo.InvariantCulture)
-            : string.Empty;
-    }
-
-    private static string NormalizeDate(string value)
-    {
-        if (string.IsNullOrWhiteSpace(value))
-        {
-            return string.Empty;
-        }
-
-        if (double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var unix) && unix > 1000000000)
-        {
-            try
-            {
-                return DateTimeOffset.FromUnixTimeSeconds((long)unix).UtcDateTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-            }
-            catch
-            {
-                return string.Empty;
-            }
-        }
-
-        var formats = new[] { "yyyy-MM-dd", "dd/MM/yyyy", "MM-dd-yyyy", "MM/dd/yyyy" };
-        if (DateTime.TryParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var exactDate))
-        {
-            return exactDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-        }
-
-        return DateTime.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var parsedDate)
-            ? parsedDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-            : string.Empty;
-    }
-
     private static bool TryParseDate(string value, out DateTime date)
     {
         if (double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var unix) && unix > 1000000000)
@@ -397,6 +327,46 @@ public sealed class CsvFileProcessor
 
         date = default;
         return false;
+    }
+
+    private sealed class BenchmarkSampler
+    {
+        private readonly List<double> _latenciesMs = [];
+        private long _peakMemoryBytes = GC.GetTotalMemory(false);
+
+        public void CaptureRow(double latencyMs)
+        {
+            _latenciesMs.Add(latencyMs);
+            _peakMemoryBytes = Math.Max(_peakMemoryBytes, GC.GetTotalMemory(false));
+        }
+
+        public BenchmarkMetrics Build(long executionMs, int rowCount)
+        {
+            _latenciesMs.Sort();
+
+            var p50 = Percentile(50);
+            var p95 = Percentile(95);
+            var max = _latenciesMs.Count == 0 ? 0d : _latenciesMs[^1];
+            var rowsPerSecond = rowCount <= 0 ? 0d : Math.Round(rowCount / (Math.Max(1, executionMs) / 1000d), 2);
+
+            return new BenchmarkMetrics(
+                Math.Max(1, executionMs),
+                rowsPerSecond,
+                _peakMemoryBytes,
+                new LatencySummary(Math.Round(p50, 3), Math.Round(p95, 3), Math.Round(max, 3), _latenciesMs.Count));
+        }
+
+        private double Percentile(int percentile)
+        {
+            if (_latenciesMs.Count == 0)
+            {
+                return 0d;
+            }
+
+            var index = (int)Math.Ceiling((_latenciesMs.Count * percentile) / 100d) - 1;
+            index = Math.Clamp(index, 0, _latenciesMs.Count - 1);
+            return _latenciesMs[index];
+        }
     }
 
     private sealed class ColumnAccumulator

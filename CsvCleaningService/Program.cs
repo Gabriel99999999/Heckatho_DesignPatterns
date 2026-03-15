@@ -1,6 +1,7 @@
 using CsvCleaningService.Api;
 using CsvCleaningService.Application;
 using CsvCleaningService.Domain.Models;
+using CsvCleaningService.Evaluation;
 using CsvCleaningService.Infrastructure.Background;
 using CsvCleaningService.Infrastructure.Csv;
 using CsvCleaningService.Infrastructure.Storage;
@@ -16,10 +17,13 @@ builder.Services.AddSingleton(new FileStorage(storageRoot));
 builder.Services.AddSingleton<ImportStore>();
 builder.Services.AddSingleton<OutboxStore>();
 builder.Services.AddSingleton<ContactValueValidator>();
-builder.Services.AddSingleton<TransformSuggestionService>();
+builder.Services.AddSingleton<TransformRuleValidator>();
+builder.Services.AddSingleton<AiMappingSuggestionService>();
+builder.Services.AddSingleton<SandboxedTransformPipeline>();
 builder.Services.AddSingleton<CsvFileProcessor>();
 builder.Services.AddSingleton<CsvProcessingService>();
 builder.Services.AddSingleton<ImportResponseFactory>();
+builder.Services.AddSingleton<EvalHarnessService>();
 builder.Services.AddHostedService<OutboxWorkerService>();
 
 var app = builder.Build();

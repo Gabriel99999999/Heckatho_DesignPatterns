@@ -1,0 +1,21 @@
+{
+  "name": "contacts-fixture",
+  "csvFile": "contacts-fixture.csv",
+  "expectedRules": [
+    "trim:name",
+    "toLower:email",
+    "removeInvalidEmail:email",
+    "normalizePhone:phone",
+    "removeInvalidPhone:phone",
+    "normalizeStatus:status"
+  ],
+  "expectedAnomalies": [
+    "invalid_email",
+    "invalid_phone",
+    "invalid_status"
+  ],
+  "clearedAnomalies": [
+    "invalid_email",
+    "invalid_phone"
+  ]
+}

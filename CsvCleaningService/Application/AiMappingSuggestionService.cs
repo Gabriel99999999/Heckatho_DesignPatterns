@@ -2,9 +2,18 @@ using CsvCleaningService.Domain.Models;
 
 namespace CsvCleaningService.Application;
 
-public sealed class TransformSuggestionService
+public sealed class AiMappingSuggestionService
 {
-    public List<TransformRule> Suggest(List<string> headers, List<Anomaly> anomalies)
+    private const string ProviderName = "local-heuristic-llm";
+
+    private readonly TransformRuleValidator _validator;
+
+    public AiMappingSuggestionService(TransformRuleValidator validator)
+    {
+        _validator = validator;
+    }
+
+    public (List<TransformRule> Rules, string Provider) Suggest(List<string> headers, List<ColumnProfile> profile, List<Anomaly> anomalies)
     {
         var result = new List<TransformRule>();
 
@@ -18,6 +27,12 @@ public sealed class TransformSuggestionService
                 result.Add(new TransformRule("removeInvalidEmail", header, null, true));
             }
 
+            if (header.Contains("phone", StringComparison.OrdinalIgnoreCase))
+            {
+                result.Add(new TransformRule("normalizePhone", header, null, true));
+                result.Add(new TransformRule("removeInvalidPhone", header, null, true));
+            }
+
             if (header.Contains("status", StringComparison.OrdinalIgnoreCase))
             {
                 result.Add(new TransformRule("normalizeStatus", header, null, true));
@@ -28,29 +43,33 @@ public sealed class TransformSuggestionService
                 result.Add(new TransformRule("normalizeCity", header, null, true));
             }
 
-            if (header.Contains("phone", StringComparison.OrdinalIgnoreCase))
-            {
-                result.Add(new TransformRule("normalizePhone", header, null, true));
-                result.Add(new TransformRule("removeInvalidPhone", header, null, true));
-            }
-
             if (header.Contains("date", StringComparison.OrdinalIgnoreCase))
             {
                 result.Add(new TransformRule("normalizeDate", header, null, true));
             }
 
-            if (header.Contains("value", StringComparison.OrdinalIgnoreCase)
-                || anomalies.Any(a => a.Column.Equals(header, StringComparison.OrdinalIgnoreCase) && a.Code == "mixed_types"))
+            if (ShouldParseNumber(header, anomalies))
             {
                 result.Add(new TransformRule("parseNumber", header, null, true));
             }
 
-            result.Add(new TransformRule("nullIfEmpty", header, null, true));
+            if (profile.Any(item => item.Column.Equals(header, StringComparison.OrdinalIgnoreCase) && item.NullRate > 0))
+            {
+                result.Add(new TransformRule("nullIfEmpty", header, null, true));
+            }
         }
 
-        return result
+        var uniqueRules = result
             .GroupBy(rule => $"{rule.Operation}|{rule.Column}|{rule.Parameter}", StringComparer.OrdinalIgnoreCase)
             .Select(group => group.First())
             .ToList();
+
+        return (_validator.Validate(uniqueRules, headers), ProviderName);
+    }
+
+    private static bool ShouldParseNumber(string header, List<Anomaly> anomalies)
+    {
+        return header.Contains("value", StringComparison.OrdinalIgnoreCase)
+            || anomalies.Any(anomaly => anomaly.Column.Equals(header, StringComparison.OrdinalIgnoreCase) && anomaly.Code == "mixed_types");
     }
 }

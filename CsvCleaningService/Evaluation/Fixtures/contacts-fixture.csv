@@ -1,0 +1,4 @@
+id,name,email,phone,status,city
+1, Alice ,Alice@Example.COM,0049123456789,lost,berlin
+2,Bob,bad-email,123,missing,munich
+3,Carla,carla@example.com,+49 30 1234567,found,HAMBURG
